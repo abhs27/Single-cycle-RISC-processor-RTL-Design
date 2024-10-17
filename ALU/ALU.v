@@ -1,5 +1,5 @@
 module ALU (
-    input [3:0] ALUCtl,
+    input [3:0] ALUCntrl,
     input [31:0] A,B,
     output reg [31:0] ALUOut,
     output zero
@@ -12,22 +12,19 @@ module ALU (
 always@(*)
 begin
 	case(ALUCntrl)
-	begin
-		4b'0010: ALUOut = A+B; //add
-		4b'0110: ALUOut = A-B; //subtract
-		4b'0000: ALUOut = A&B; //AND
-		4b'0001: ALUOut = A|B; //OR
-		4b'0011: ALUOut = A^B; //XOR
-		4b'0100: ALUOut = ($signed(A)<$signed(B))? 1:0; //set less than
-		4b'0101: ALUOut = (A<B)? 1:0; //set less than unsigned
-		4b'1010: ALUOut = A<<B; //shift left logical
-		4b'1000: ALUOut = A>>B; //shift right logical
-		4b'1001: ALUOut = A>>>B; //shift right arithmetic
+		4'b0010: ALUOut = A+B; //add
+		4'b0110: ALUOut = A-B; //subtract
+		4'b0000: ALUOut = A&B; //AND
+		4'b0001: ALUOut = A|B; //OR
+		4'b0011: ALUOut = A^B; //XOR
+		4'b0100: ALUOut = ($signed(A)<$signed(B))? 1:0; //set less than
+		4'b0101: ALUOut = (A<B)? 1:0; //set less than unsigned
+		4'b1010: ALUOut = A<<B; //shift left logical
+		4'b1000: ALUOut = A>>B; //shift right logical
+		4'b1001: ALUOut = A>>>B; //shift logical left
 
 
-	end
+	endcase
 end
-
-assign zero = ~(|ALUOut);
     
 endmodule
