@@ -10,8 +10,8 @@ module ALUCtrl (
 always@(*)
 begin
 	case(ALUOp):begin //checking whether ld/str or B-type or R-type
-		2'b00 : ALUCntrl = 4b'0010; //load or store word
-		2'b01 : ALUCntrl = 4b'0110; //branch
+		2'b00 : ALUCntrl = 4'b0010; //load or store word
+		2'b01 : ALUCntrl = 4'b0110; //branch
 		2'b10 :
 		begin
 		case(funct3): //checking which R-type instruction
